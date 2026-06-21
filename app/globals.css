@@ -1,0 +1,297 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ACHARYA Light Theme - Saffron Orange & Navy Blue (from logo) */
+  /* Temple-like serenity | Clean, airy, breathable layout | Premium but approachable */
+  
+  /* Backgrounds - Light ivory/cream tones */
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.20 0.05 250);
+  
+  /* Cards - Pure white with subtle warmth */
+  --card: oklch(1.0 0 0);
+  --card-foreground: oklch(0.20 0.05 250);
+  --popover: oklch(1.0 0 0);
+  --popover-foreground: oklch(0.20 0.05 250);
+  
+  /* Primary - Saffron/Gold (from logo) */
+  --primary: oklch(0.72 0.16 55);
+  --primary-foreground: oklch(1.0 0 0);
+  
+  /* Secondary - Deep Navy Blue (from logo) */
+  --secondary: oklch(0.28 0.07 250);
+  --secondary-foreground: oklch(1.0 0 0);
+  
+  /* Muted - Soft warm gray */
+  --muted: oklch(0.96 0.005 85);
+  --muted-foreground: oklch(0.45 0.02 250);
+  
+  /* Accent - Teal accent for CTAs */
+  --accent: oklch(0.55 0.12 200);
+  --accent-foreground: oklch(1.0 0 0);
+  
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.95 0.01 85);
+  
+  /* Borders - Light grey with subtle warmth */
+  --border: oklch(0.92 0.006 85);
+  --input: oklch(0.97 0.004 85);
+  --ring: oklch(0.72 0.16 55);
+  
+  /* Chart Colors */
+  --chart-1: oklch(0.72 0.16 55);
+  --chart-2: oklch(0.28 0.07 250);
+  --chart-3: oklch(0.55 0.12 200);
+  --chart-4: oklch(0.65 0.14 50);
+  --chart-5: oklch(0.60 0.10 150);
+  
+  --radius: 0.75rem;
+  
+  /* Sidebar - Light theme with subtle border */
+  --sidebar: oklch(1.0 0 0);
+  --sidebar-foreground: oklch(0.20 0.05 250);
+  --sidebar-primary: oklch(0.72 0.16 55);
+  --sidebar-primary-foreground: oklch(1.0 0 0);
+  --sidebar-accent: oklch(0.97 0.006 85);
+  --sidebar-accent-foreground: oklch(0.20 0.05 250);
+  --sidebar-border: oklch(0.92 0.006 85);
+  --sidebar-ring: oklch(0.72 0.16 55);
+  
+  /* Custom ACHARYA Variables */
+  --saffron: oklch(0.72 0.16 55);
+  --saffron-light: oklch(0.85 0.10 55);
+  --navy: oklch(0.28 0.07 250);
+  --navy-light: oklch(0.40 0.06 250);
+  --cream: oklch(0.985 0.006 85);
+  --ivory: oklch(0.99 0.004 85);
+  --teal: oklch(0.55 0.12 200);
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', sans-serif;
+  --font-serif: 'Cinzel', 'Cinzel Fallback', serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Extended Theme Colors */
+  --color-saffron: var(--saffron);
+  --color-saffron-light: var(--saffron-light);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-cream: var(--cream);
+  --color-ivory: var(--ivory);
+  --color-teal: var(--teal);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Animations - Gentle, subtle movements */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+  background-size: 200% 100%;
+}
+
+/* Glass Card Effect - Soft, subtle for light theme */
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    oklch(1.0 0 0 / 0.95) 0%,
+    oklch(0.99 0.004 85 / 0.9) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid oklch(0.92 0.006 85);
+  box-shadow: 0 4px 20px oklch(0.28 0.07 250 / 0.06);
+}
+
+/* Soft Gold Glow Effect - Premium but subtle */
+.saffron-glow {
+  box-shadow: 0 0 15px oklch(0.72 0.16 55 / 0.2),
+              0 0 30px oklch(0.72 0.16 55 / 0.1);
+}
+
+.saffron-glow-sm {
+  box-shadow: 0 0 8px oklch(0.72 0.16 55 / 0.15),
+              0 0 15px oklch(0.72 0.16 55 / 0.08);
+}
+
+/* Legacy classes - map to new names */
+.gold-glow {
+  box-shadow: 0 0 15px oklch(0.72 0.16 55 / 0.2),
+              0 0 30px oklch(0.72 0.16 55 / 0.1);
+}
+
+.gold-glow-sm {
+  box-shadow: 0 0 8px oklch(0.72 0.16 55 / 0.15),
+              0 0 15px oklch(0.72 0.16 55 / 0.08);
+}
+
+/* Text Glow - Soft saffron */
+.text-glow {
+  text-shadow: 0 0 8px oklch(0.72 0.16 55 / 0.3),
+               0 0 16px oklch(0.72 0.16 55 / 0.15);
+}
+
+/* Radial Gradient Backgrounds - Light, airy */
+.bg-radial-cream {
+  background: radial-gradient(
+    ellipse at center,
+    oklch(1.0 0 0) 0%,
+    oklch(0.985 0.006 85) 50%,
+    oklch(0.97 0.008 85) 100%
+  );
+}
+
+.bg-radial-saffron {
+  background: radial-gradient(
+    circle at center,
+    oklch(0.72 0.16 55 / 0.08) 0%,
+    transparent 70%
+  );
+}
+
+/* Navy Section Background - For contrast sections */
+.bg-navy-section {
+  background: linear-gradient(
+    180deg,
+    oklch(0.28 0.07 250) 0%,
+    oklch(0.22 0.06 250) 100%
+  );
+}
+
+/* Subtle Indian Motif Pattern Overlay (very low opacity) */
+.pattern-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d97706' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Noise Texture Overlay - Very subtle for light theme */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.01;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color - Soft saffron */
+::selection {
+  background: oklch(0.72 0.16 55 / 0.2);
+  color: oklch(0.20 0.05 250);
+}
+
+/* Progress bar styling */
+[data-slot="progress-indicator"] {
+  background: oklch(0.72 0.16 55);
+}
+
+/* Card hover states - subtle lift effect */
+.card-hover {
+  transition: all 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px oklch(0.28 0.07 250 / 0.08);
+}
+
+/* Divider with gold accent */
+.divider-gold {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    oklch(0.72 0.16 55 / 0.5),
+    transparent
+  );
+}
