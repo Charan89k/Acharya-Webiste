@@ -295,3 +295,48 @@ html {
     transparent
   );
 }
+
+/* Premium Splash Screen Keyframes & Utility Classes */
+@keyframes splash-logo-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splash-logo-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px oklch(0.72 0.16 55 / 0.25));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 30px oklch(0.72 0.16 55 / 0.5));
+  }
+}
+
+.animate-splash-logo-fade-in {
+  animation: splash-logo-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-splash-logo-pulse {
+  animation: splash-logo-pulse 2.2s ease-in-out infinite;
+}
+
+/* Respect user prefers-reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .animate-splash-logo-fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .animate-splash-logo-pulse {
+    animation: none;
+    filter: drop-shadow(0 0 20px oklch(0.72 0.16 55 / 0.3));
+  }
+}
+

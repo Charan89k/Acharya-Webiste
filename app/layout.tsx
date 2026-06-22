@@ -6,6 +6,7 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { RouteObserver } from '@/components/route-observer'
 import { Toaster } from '@/components/ui/toaster'
+import { SplashProvider } from '@/components/splash-provider'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -57,13 +58,16 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${cinzel.variable} bg-background`}>
       <body className="font-sans antialiased text-slate-950">
-        <RouteObserver />
-        <Navbar />
-        <div className="relative min-h-screen pt-28">{children}</div>
-        <Footer />
-        <Toaster />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <SplashProvider>
+          <RouteObserver />
+          <Navbar />
+          <div className="relative min-h-screen pt-28">{children}</div>
+          <Footer />
+          <Toaster />
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </SplashProvider>
       </body>
     </html>
   )
 }
+
