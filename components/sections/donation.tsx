@@ -43,31 +43,16 @@ export function DonationSection() {
     }
 
     setIsSubmitting(true)
-    try {
-      const response = await fetch('/api/donations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email: email || "donor@acharya.org",
-          amount: Number(amount) || 501,
-          message,
-        }),
-      })
-
-      if (response.ok) {
-        toast({
-          title: "Donation Initiated",
-          description: "Redirecting to our secure payment gateway...",
-        })
-      }
-    } catch (err) {
-      console.error("Donation recording error:", err)
-    } finally {
+    toast({
+      title: "Donation Initiated",
+      description: "Redirecting to our secure payment gateway...",
+    })
+    
+    // Brief delay to allow the toast to be seen before redirecting
+    setTimeout(() => {
       setIsSubmitting(false)
-      // Redirect to Razorpay gateway
       window.location.href = "https://rzp.io/rzp/B4BNmsw"
-    }
+    }, 800)
   }
 
   return (

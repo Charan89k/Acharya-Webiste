@@ -1,12 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Calendar, MapPin, Clock, ChevronRight, Users } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { loadEvents } from "@/services/admin-store"
 
 interface EventItem {
   id: string
@@ -20,6 +19,53 @@ interface EventItem {
   attendees: number
 }
 
+const STATIC_EVENTS: EventItem[] = [
+  {
+    id: "event-1",
+    title: "Samskruti: Vedic Wisdom & Leadership Summit",
+    description: "A premium gathering of youth, educators, and scholars discussing the application of timeless Vedic wisdom to modern challenges. Features interactive workshops, keynote addresses, and panel discussions.",
+    date: "July 12, 2026",
+    time: "10:00 AM - 4:00 PM",
+    location: "ACHARYA Centre, Hyderabad",
+    category: "Heritage",
+    featured: true,
+    attendees: 250
+  },
+  {
+    id: "event-2",
+    title: "Sanskrit Bhasha Utsav",
+    description: "Celebrate the beauty of the Sanskrit language with poetry recitals, plays, and interactive speaking circles designed for beginners and advanced learners alike.",
+    date: "August 1, 2026",
+    time: "2:00 PM - 5:00 PM",
+    location: "Malkajgiri Community Hall",
+    category: "Cultural",
+    featured: false,
+    attendees: 120
+  },
+  {
+    id: "event-3",
+    title: "Grand Hanuman Chalisa Recitation",
+    description: "A community-wide gathering for the collective chanting of Hanuman Chalisa, bringing together families to celebrate devotion, unity, and inner strength.",
+    date: "August 15, 2026",
+    time: "6:00 PM - 8:00 PM",
+    location: "Acharya Complex Ground",
+    category: "Spiritual",
+    featured: false,
+    attendees: 300
+  },
+  {
+    id: "event-4",
+    title: "Heritage Art & Crafts Exhibition",
+    description: "Showcasing traditional art forms, sculptures, and manuscript preservation techniques. Local artisans will demonstrate their crafts.",
+    date: "September 5, 2026",
+    time: "11:00 AM - 6:00 PM",
+    location: "Art Gallery Wing",
+    category: "Education",
+    featured: false,
+    attendees: 180
+  }
+]
+
 const categoryColors: Record<string, string> = {
   Cultural: "bg-primary/15 text-primary border-primary/30",
   Empowerment: "bg-pink-500/15 text-pink-600 border-pink-500/30",
@@ -29,16 +75,8 @@ const categoryColors: Record<string, string> = {
 }
 
 export function EventsSection() {
-  const [events, setEvents] = useState<EventItem[]>([])
+  const [events] = useState<EventItem[]>(STATIC_EVENTS)
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
-
-  useEffect(() => {
-    async function fetchEvents() {
-      const data = await loadEvents()
-      setEvents(data)
-    }
-    fetchEvents()
-  }, [])
 
   return (
     <section id="events" className="py-24 bg-background relative">

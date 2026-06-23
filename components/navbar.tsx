@@ -88,24 +88,6 @@ export function Navbar() {
             )
           })}
         </div>
-
-        {/* Login Button - Gold outline or teal fill */}
-        <div className="hidden lg:block">
-          <Link href="/dashboard">
-            <Button
-              variant="outline"
-              className={cn(
-                "rounded-full px-6 transition-all duration-300",
-                isScrolled
-                  ? "border-primary/40 text-secondary hover:bg-primary hover:text-primary-foreground hover:border-primary"
-                  : "border-[#c8a96e]/50 text-[#e8d5a8] bg-transparent hover:bg-[#c8a96e]/15 hover:border-[#c8a96e]"
-              )}
-            >
-              Log in
-            </Button>
-          </Link>
-        </div>
-
         {/* Mobile Menu Button */}
         <button
           className="lg:hidden text-secondary p-2"
@@ -134,13 +116,6 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-            <Button
-              className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 mt-2"
-            >
-              Log in
-            </Button>
-          </Link>
         </div>
       </div>
     </nav>

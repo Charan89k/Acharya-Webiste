@@ -1,12 +1,25 @@
 "use client"
 
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true
+      videoRef.current.play().catch(err => {
+        console.error("Autoplay failed:", err)
+      })
+    }
+  }, [])
+
   return (
     <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center">
       {/* 🎥 VIDEO */}
       <video
+        ref={videoRef}
         src="/drone.mp4"
         autoPlay
         muted

@@ -6,7 +6,51 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { GalleryGrid } from "./GalleryGrid"
 import { Lightbox } from "./Lightbox"
 import type { GalleryCategory, GalleryImage } from "./types"
-import { loadGalleryItems } from "@/services/admin-store"
+
+const STATIC_IMAGES: GalleryImage[] = [
+  {
+    id: "img-1",
+    name: "Youth Vedic Discourse",
+    caption: "A traditional gathering focused on sharing heritage lessons with the younger generation.",
+    category: "Community",
+    imageUrl: "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=1200",
+  },
+  {
+    id: "img-2",
+    name: "Heritage Complex Land Site",
+    caption: "The beautiful plot in Malkajgiri slated for the new community center development.",
+    category: "Community",
+    imageUrl: "https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&q=80&w=1200",
+  },
+  {
+    id: "img-3",
+    name: "Hanuman Jayanti Pooja",
+    caption: "Devotees attending the grand prayer session and Hanuman Chalisa recitation.",
+    category: "Community",
+    imageUrl: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&q=80&w=1200",
+  },
+  {
+    id: "img-4",
+    name: "Sanskrit Speaking Circle",
+    caption: "Weekly study sessions celebrating classical language learning and transmission.",
+    category: "Community",
+    imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1200",
+  },
+  {
+    id: "img-5",
+    name: "Vedic Yajna Ceremony",
+    caption: "A sacred fire ceremony conducted to bless the land and community welfare activities.",
+    category: "Community",
+    imageUrl: "https://images.unsplash.com/photo-1542382156909-9ae37b3f56fd?auto=format&fit=crop&q=80&w=1200",
+  },
+  {
+    id: "img-6",
+    name: "Acharya Cultural Fest",
+    caption: "Students performing traditional music and dance during the annual cultural day.",
+    category: "Community",
+    imageUrl: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=1200",
+  }
+]
 
 const categories: GalleryCategory[] = ["Community"]
 
@@ -18,23 +62,9 @@ export function GalleryExperience() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
 
   useEffect(() => {
-    async function fetchGallery() {
-      try {
-        const items = await loadGalleryItems()
-        const normalized = items.map((item) => ({
-          ...item,
-          category: item.category,
-        }))
-        setImages(normalized)
-      } catch (fetchError) {
-        console.error(fetchError)
-        setError("Unable to load gallery at this time. Please try again later.")
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchGallery()
+    // Directly load static mock images
+    setImages(STATIC_IMAGES)
+    setLoading(false)
   }, [])
 
   const filteredImages = useMemo(

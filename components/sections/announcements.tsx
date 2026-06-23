@@ -1,15 +1,20 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Bell, Sparkles } from "lucide-react"
-import { loadAnnouncements } from "@/services/admin-store"
+
+const STATIC_ANNOUNCEMENTS = [
+  {
+    id: 'announcement-1',
+    title: 'Malkajgiri Land Approved',
+    summary: 'The Telangana Government has approved the land allocation for the Acharya Community Complex in Malkajgiri.',
+    category: 'Heritage',
+    active: true,
+  },
+]
 
 export function AnnouncementsSection() {
-  const [announcements, setAnnouncements] = useState<Array<{ id: string; title: string; summary: string; category: string; active: boolean }>>([])
-
-  useEffect(() => {
-    setAnnouncements(loadAnnouncements())
-  }, [])
+  const [announcements] = useState<Array<{ id: string; title: string; summary: string; category: string; active: boolean }>>(STATIC_ANNOUNCEMENTS)
 
   const activeAnnouncements = announcements.filter((item) => item.active)
 

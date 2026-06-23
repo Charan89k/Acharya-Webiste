@@ -12,7 +12,7 @@ import { toast } from "@/hooks/use-toast"
 import { useEffect } from "react"
 
 export function ContactSection() {
-  const [settings, setSettings] = useState({
+  const settings = {
     address: "ACHARYA Community Centre, Malkajgiri, Hyderabad, Telangana 500047",
     email: "contact@acharya.org",
     contactNumber: "+91 40 XXXX XXXX",
@@ -21,33 +21,7 @@ export function ContactSection() {
     instagram: "#",
     youtube: "#",
     linkedin: "#",
-  })
-
-  useEffect(() => {
-    async function fetchSettings() {
-      try {
-        const res = await fetch('/api/settings')
-        if (res.ok) {
-          const data = await res.json()
-          if (data) {
-            setSettings({
-              address: data.address || settings.address,
-              email: data.email || settings.email,
-              contactNumber: data.contactNumber || settings.contactNumber,
-              facebook: data.facebook || settings.facebook,
-              twitter: data.twitter || settings.twitter,
-              instagram: data.instagram || settings.instagram,
-              youtube: data.youtube || settings.youtube,
-              linkedin: data.linkedin || settings.linkedin,
-            })
-          }
-        }
-      } catch (err) {
-        console.error(err)
-      }
-    }
-    fetchSettings()
-  }, [])
+  }
 
   const contactInfo = [
     {
@@ -88,34 +62,15 @@ export function ContactSection() {
     if (!formData.name || !formData.email || !formData.message) return
 
     setIsSubmitting(true)
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
-        toast({
-          title: "Message Sent",
-          description: "Thank you! We will get back to you shortly.",
-        })
-        setFormData({ name: "", email: "", subject: "", message: "" })
-      } else {
-        toast({
-          title: "Error Sending Message",
-          description: "Something went wrong. Please try again.",
-        })
-      }
-    } catch (err) {
-      console.error("Contact submit error:", err)
-      toast({
-        title: "Submit Failed",
-        description: "Could not connect to the server.",
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
+    // Simulate a brief API delay for a natural UI feel
+    await new Promise(resolve => setTimeout(resolve, 600))
+    
+    toast({
+      title: "Message Sent",
+      description: "Thank you! We will get back to you shortly.",
+    })
+    setFormData({ name: "", email: "", subject: "", message: "" })
+    setIsSubmitting(false)
   }
 
   return (

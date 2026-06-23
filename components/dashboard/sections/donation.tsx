@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { toast } from "@/hooks/use-toast"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -54,24 +55,40 @@ export default function DonationPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle donation submission
-    console.log({ donorName, donationAmount, message })
+    toast({
+      title: "Donation Initiated",
+      description: "Redirecting to our secure payment gateway...",
+    })
+    setTimeout(() => {
+      window.location.href = "https://rzp.io/rzp/B4BNmsw"
+    }, 800)
   }
+
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true
+      videoRef.current.play().catch(err => {
+        console.error("Autoplay failed:", err)
+      })
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Video Hero Section */}
       <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <video
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
         >
-          <source src="/videos/drone-shot.mp4" type="video/mp4" />
-          {/* Fallback image or placeholder */}
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-100 to-green-100"></div>
+          <source src="/drone.mp4" type="video/mp4" />
         </video>
 
         {/* Gradient Overlay */}
